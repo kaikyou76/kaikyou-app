@@ -35,7 +35,7 @@ export default async function handler(
 //                 email: true
 //              },
 //         })
-        //const createdUser = await prismaCreateUser(body)
+        const createdUser = await prismaCreateUser(body)
         res.status(200).json(createdUser)
       break     
 
