@@ -27,3 +27,51 @@ export const prismaCreateUser = async (body: Omit<User, 'id' | 'createdAt' | 'up
    })
    return createdUser
 }
+
+export const prismaGetUserById = async (id: string | string[] | undefined) => {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: Number(id)
+        },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            posts: true,
+        },
+      })
+      return user
+}
+
+export const prismaDeleteUserById = async (id: string | string[] | undefined) => {
+    const deletedUser = await prisma.user.delete({
+        where: {
+          id: Number(id),
+        },
+        select: {
+          id: true,
+        },
+      })
+      return deletedUser
+}
+
+export const prismaUpdateUserById = async (
+    id: string | string[] | undefined, 
+    body:  Pick<User, 'email' | 'name'>
+) => {
+    const updateUser = await prisma.user.update({
+        where: {
+          id: Number(id),
+        },
+        data: {
+          email: body.email,
+          name: body.name,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      })
+      return updateUser
+}
