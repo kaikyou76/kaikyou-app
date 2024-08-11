@@ -37,7 +37,7 @@ export default function UserDetails() {
 
         <div className="flex flex-row justify-center items-center">
         {
-          user && <UserCard user={user}/>
+          user && <UserCard user={user} isDetailds={true}/>
 
         }
         </div>      

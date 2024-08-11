@@ -33,7 +33,7 @@ export default function Home() {
         <div className="flex flex-row justify-center items-center">
         {
           users && users.map(user => (
-               <UserCard key={user.id} user={user}/>
+               <UserCard key={user.id} user={user} isDetailds={false}/>
           ))
         }
         </div>      
