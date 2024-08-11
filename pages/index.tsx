@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import { User } from '@prisma/client'
 import UserCard from '../components/UserCard'
+import RegisterForm from '../components/RegisterForm'
 
 export default function Home() {
 
@@ -21,8 +22,13 @@ export default function Home() {
      <Layout>
       <div className='flex flex-col justify-center items-center' >
         <h2 className='text-4xl font-black font-sans p-4 mt-6'>
+          Register Form
+        </h2>
+        <RegisterForm />
+        <h2 className='text-4xl font-black font-sans p-4 mt-6'>
            User Lists
         </h2>
+
 
         <div className="flex flex-row justify-center items-center">
         {
