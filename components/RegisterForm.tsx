@@ -14,9 +14,23 @@ const RegisterForm = () => {
         setFormData({ ...formData, [name]: value })
     }
 
-    const handleSubmit = (e: SyntheticEvent) => {
+    const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()// フォームが送信されるのを防ぐ
-        alert(JSON.stringify(formData))
+        const res = await fetch('/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+
+        if (res.status ===200){
+            const user = await res.json()
+            console.log(user);
+        } else {
+            console.log(`${res.status} something went wrong`)
+        }
+        //alert(JSON.stringify(formData))
     }
 
     return (
