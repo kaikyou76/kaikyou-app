@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
 import { User } from '@prisma/client'
 import UserCard from '../../components/UserCard'
-import RegisterForm from '../../components/RegisterForm'
 import { useRouter } from 'next/router'
+import UpdateForm from '../../components/UpdateForm'
 
 export default function UserDetails() {
 
@@ -27,9 +27,9 @@ export default function UserDetails() {
      <Layout>
       <div className='flex flex-col justify-center items-center' >
         <h2 className='text-4xl font-black font-sans p-4 mt-6'>
-          Register Form
+          Update Form
         </h2>
-        <RegisterForm />
+        {user && <UpdateForm user={user} />}
         <h2 className='text-4xl font-black font-sans p-4 mt-6'>
           User Details
         </h2>
