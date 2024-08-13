@@ -4,7 +4,7 @@ import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 interface UserData {
     id: number
     email: string
-    name: string
+    name: string | null
 }
 
 interface Props {
@@ -65,7 +65,7 @@ const UpdateForm = ({user}: Props) => {
                         id="username"
                         type="text"
                         name="name"
-                        value={formData.name}
+                        value={formData.name || ''}
                         onChange={handleChange}
                         required
                     />

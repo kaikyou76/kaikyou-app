@@ -4,6 +4,7 @@ import { User } from '@prisma/client'
 import UserCard from '../../components/UserCard'
 import { useRouter } from 'next/router'
 import UpdateForm from '../../components/UpdateForm'
+import { Button } from 'flowbite-react'
 
 export default function UserDetails() {
 
@@ -23,6 +24,22 @@ export default function UserDetails() {
     })()    
   }, [id])
   
+const handleDelete = async () => {
+  if(window.confirm('Delete really?')){
+    const res = await fetch(`/api/users/${user?.id}`, {
+        method: 'DELETE',
+    })
+
+    if (res.status ===200){
+        const user = await res.json()
+        console.log(user);
+        router.push('/')//トップページに移動
+    } else {
+        console.log(`${res.status} something went wrong`)
+    }
+   }
+}
+
   return (
      <Layout>
       <div className='flex flex-col justify-center items-center' >
@@ -35,10 +52,13 @@ export default function UserDetails() {
         </h2>
 
 
-        <div className="flex flex-row justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
         {
           user && <UserCard user={user} isDetailds={true}/>
 
+        }
+        {
+          user && <Button onClick={handleDelete}>User Delete</Button>
         }
         </div>      
       </div>
